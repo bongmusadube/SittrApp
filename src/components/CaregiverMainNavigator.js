@@ -1,9 +1,8 @@
 //CaregiverMainNavigator.js
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Image } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import CaregiverHomeScreen from '../screens/CaregiverHomeScreen';
 import BookingRequests from '../screens/BookingRequests';
 import SettingsScreen from '../screens/SettingsScreen';
 import JobInProgress from '../screens/JobInProgress';

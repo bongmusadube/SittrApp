@@ -4,9 +4,7 @@ import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DocumentPicker from 'react-native-document-picker';
-import UploadDocumentComponent from '../components/UploadDocumentsComponent';
-import { create } from 'react-test-renderer';
-import ImagePicker from 'react-native-image-picker';
+
 
 const CaregiverRegisterScreen = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState(1);

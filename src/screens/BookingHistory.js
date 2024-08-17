@@ -4,8 +4,7 @@ import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import { Rating } from 'react-native-stock-star-rating';
-import { AirbnbRating } from '@rneui/themed'; // Import AirbnbRating
+import { AirbnbRating } from '@rneui/themed'; 
 
 const BookingHistory = () => {
   const route = useRoute();

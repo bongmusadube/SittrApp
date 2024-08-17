@@ -1,7 +1,5 @@
-//import libaries
 import React from 'react';
 import {View, Text, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-
 import Header from '../components/header';
 import CaregiverDetails from '../components/CaregiverDetails';
 import CaregiverCard from '../components/CaregiverCard';
@@ -56,5 +54,4 @@ const DisplayCaregivers = () => {
   )
 };
 
-//render component
 export default DisplayCaregivers;

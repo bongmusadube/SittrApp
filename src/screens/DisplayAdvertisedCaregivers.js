@@ -1,18 +1,9 @@
-//import libaries
 import React from 'react';
 import {View, Text, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-
 import Header from '../components/header';
-import CaregiverDetails from '../components/CaregiverDetails';
-import CaregiverCard from '../components/CaregiverCard';
 import { useRoute } from '@react-navigation/native';
-import AdvertisedCaregivers from '../components/AdvertisedCaregivers';
 import AdvertisedCaregiverDetails from '../components/AdvertisedCaregiverDetails';
 
-
-
-
-//create component
 const DisplayAdvertisedCaregivers = () => {
   const route = useRoute();
   const userEmail = route.params?.userEmail;
@@ -45,5 +36,4 @@ const DisplayAdvertisedCaregivers = () => {
   )
 };
 
-//render component
 export default DisplayAdvertisedCaregivers;

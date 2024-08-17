@@ -4,10 +4,9 @@ import { Rating } from 'react-native-stock-star-rating';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import { ipConfig } from "../config";
 
-const caregiverUrl = `http://${ipConfig}:8080/api/v1/caregivers`;
-const caregiverImagesUrl = `http://${ipConfig}:8080/api/v1/allusers/images/`;
+const caregiverUrl = `https://sittrapi-production.up.railway.app/api/v1/caregivers`;
+const caregiverImagesUrl = `https://sittrapi-production.up.railway.app/api/v1/allusers/images/`;
 
 const CaregiverDetails = ({userEmail}) => {
   const [caregivers, setCaregivers] = useState([]);
@@ -23,7 +22,7 @@ const CaregiverDetails = ({userEmail}) => {
                 response.data.map(async caregiver => {
                     try {
                         const ratingResponse = await axios.get(
-                            `http://${ipConfig}:8080/api/v1/caregivers/reviewstats/${caregiver.email}`
+                            `https://sittrapi-production.up.railway.app/api/v1/caregivers/reviewstats/${caregiver.email}`
                         );
                         const { total_ratings, average_rating } = ratingResponse.data;
 

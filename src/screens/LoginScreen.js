@@ -2,10 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Button, Text, TextInput, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
 import axios from 'axios'; // Import axios library for making API requests
 import { AuthContext } from '../context/AuthContext';
-import { ipConfig } from '../config';
 import Header from '../components/header';
-import { CommonActions } from '@react-navigation/native';
-import Icon from "react-native-vector-icons/FontAwesome5";  
+
+
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);

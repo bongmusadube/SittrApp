@@ -1,10 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
-import { ipConfig } from '../config';
 
 export const AuthContext = createContext();
-
 
 export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -15,26 +13,24 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
   
     try {
-      const url = `http://${ipConfig}:8080/api/v1/allusers/login`;
+      // Use the Railway URL directly
+      const url = 'https://sittrapi-production.up.railway.app/api/v1/allusers/login';
       const loginData = { email, password };
   
       const response = await axios.post(url, loginData);
   
       const userData = response.data.user;
       setUserInfo(userData);
-      AsyncStorage.setItem('userInfo', JSON.stringify(userData));
+      await AsyncStorage.setItem('userInfo', JSON.stringify(userData));
       setIsLoading(false);
       setIsAuthenticated(true);
   
       if (userData.usertype === 'parent') {
-        // You might need to adjust the navigation part based on your navigation setup
-        // This example assumes that you are navigating to 'MainNavigator'
         navigation.navigate('MainNavigator', { userEmail: email });
       } else if (userData.usertype === 'caregiver') {
         navigation.navigate('CaregiverMainNavigator', { caregiverEmail: email });
       }
   
-    
     } catch (error) {
       console.log(`login error ${error}`);
       setIsLoading(false);
@@ -45,38 +41,23 @@ export const AuthProvider = ({ children }) => {
 
   const handleLoginError = (error) => {
     if (error.response && error.response.status === 401) {
-      // If the response status is 401 (Unauthorized), the password is incorrect
       alert('Incorrect email or password. Please try again.');
     } else if (error.response && error.response.status === 404) {
-      // If the response status is 404 (Not Found), the user or caregiver is not found
       alert('User or caregiver not found. Please register first.');
     } else {
-      // For other errors, show a generic error message
       alert('An error occurred during login. Please try again later.');
     }
   };
-
-  // const logout = async (navigation) => {
-  //   try {
-  //     await AsyncStorage.removeItem('userInfo');
-  //     setUserInfo({});
-  //     setIsAuthenticated(false);
-  //     alert('Logged out successfully!');
-  //     navigation.navigate('LoginScreen'); // Navigate to the login screen
-  //   } catch (error) {
-  //     console.log(`logout error ${error}`);
-  //   }
-  // };
 
   const logout = async () => {
     try {
       await AsyncStorage.removeItem('userInfo');
       setUserInfo({});
       setIsAuthenticated(false);
-      return true; // Return true for successful logout
+      return true; 
     } catch (error) {
       console.log(`logout error ${error}`);
-      return false; // Return false for logout failure
+      return false; 
     }
   };
 

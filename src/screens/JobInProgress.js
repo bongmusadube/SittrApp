@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ipConfig } from '../config';
 
 const JobInProgress = ({ route }) => {
   const { bookingId } = route.params;
@@ -20,7 +19,7 @@ const JobInProgress = ({ route }) => {
       // Function to fetch user's full name
       const fetchUserFullName = async (email) => {
         try {
-          const response = await axios.get(`http://${ipConfig}:8080/api/v1/users/${email}`);
+          const response = await axios.get(`https://sittrapi-production.up.railway.app/api/v1/users/${email}`);
           return response.data[0]?.fullname || '';
         } catch (error) {
           console.error('Error fetching user full name:', error);
@@ -33,7 +32,7 @@ const JobInProgress = ({ route }) => {
 
   useEffect(() => {
     axios
-    .get(`http://${ipConfig}:8080/api/v1/bookings/${bookingId}`)
+    .get(`https://sittrapi-production.up.railway.app/api/v1/bookings/${bookingId}`)
     .then((response) => {
       setBookingDetails(response.data);
 
@@ -80,7 +79,7 @@ const JobInProgress = ({ route }) => {
   const handleCompleteJob = async () => {
     console.log(notesInput);
     try {
-      await axios.patch(`http://${ipConfig}:8080/api/v1/bookings/${bookingId}/complete`, {
+      await axios.patch(`https://sittrapi-production.up.railway.app/api/v1/bookings/${bookingId}/complete`, {
         status: 'complete', // Update status
         caregiver_comment: notesInput,
       });

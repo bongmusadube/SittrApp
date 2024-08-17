@@ -14,7 +14,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
-import { ipConfig } from '../config';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const RegisterScreen = ({ navigation }) => {
@@ -138,7 +137,7 @@ const RegisterScreen = ({ navigation }) => {
           race,
         };
 
-        const response = await axios.post(`http://${ipConfig}:8080/api/v1/users/register`, userData);
+        const response = await axios.post(`https://sittrapi-production.up.railway.app/api/v1/users/register`, userData);
         setIsLoading(false);
 
         // Show an alert indicating successful registration

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView,Modal, RefreshControl, FlatList } from 'react-native';
 import axios from 'axios';
-import { ipConfig } from '../config';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
@@ -25,7 +24,7 @@ const BookingRequests = () => {
   // Function to fetch user's full name
   const fetchUserFullName = async (email) => {
     try {
-      const response = await axios.get(`http://${ipConfig}:8080/api/v1/users/${email}`);
+      const response = await axios.get(`https://sittrapi-production.up.railway.app/api/v1/users/${email}`);
       return response.data[0]?.fullname || '';
     } catch (error) {
       console.error('Error fetching user full name:', error);
@@ -36,7 +35,7 @@ const BookingRequests = () => {
   useEffect(() => {
     // Fetch bookings for the specific caregiver
     axios
-      .get(`http://${ipConfig}:8080/api/v1/bookings/caregiver/${caregiverEmail}`)
+      .get(`https://sittrapi-production.up.railway.app/api/v1/bookings/caregiver/${caregiverEmail}`)
       .then(async (response) => {
         const updatedBookings = await Promise.all(
           response.data.map(async (booking) => {
@@ -59,7 +58,7 @@ const BookingRequests = () => {
   
 
   const handleStatusChange = (bookingId, newStatus, selectedDates) => {
-    axios.patch(`http://${ipConfig}:8080/api/v1/bookings/${bookingId}`, {
+    axios.patch(`https://sittrapi-production.up.railway.app/api/v1/bookings/${bookingId}`, {
       booking_status: newStatus,
     })
     .then(response => {
@@ -74,7 +73,7 @@ const BookingRequests = () => {
   
       // Update the caregiver's booked_dates when the booking is accepted
       if (newStatus === 'accepted') {
-        axios.patch(`http://${ipConfig}:8080/api/v1/caregivers/update-booked-dates/${caregiverEmail}`, {
+        axios.patch(`https://sittrapi-production.up.railway.app/api/v1/caregivers/update-booked-dates/${caregiverEmail}`, {
           selectedDates: selectedDates,
         })
         .then(response => {
@@ -143,7 +142,7 @@ const BookingRequests = () => {
       setRefreshing(true); // Start the refresh animation
   
       // Fetch new data from the database
-      const response = await axios.get(`http://${ipConfig}:8080/api/v1/bookings/caregiver/${caregiverEmail}`);
+      const response = await axios.get(`https://sittrapi-production.up.railway.app/api/v1/bookings/caregiver/${caregiverEmail}`);
       const updatedBookings = await Promise.all(
         response.data.map(async (booking) => {
           const fullName = await fetchUserFullName(booking.user_email);

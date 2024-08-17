@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Modal, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
 import axios from 'axios';
-import { ipConfig } from '../config';
 
 const GiftedChatModal = ({ visible, onClose, user, caregiverEmail }) => {
   const [messages, setMessages] = useState([]);
@@ -11,7 +10,7 @@ const GiftedChatModal = ({ visible, onClose, user, caregiverEmail }) => {
   const onSend = () => {
     // Send the new message to your API
     axios
-      .post(`http://${ipConfig}:8080/api/v1/allusers/send-message`, {
+      .post(`https://sittrapi-production.up.railway.app/api/v1/allusers/send-message`, {
         senderEmail: user.email,
         receiverEmail: caregiverEmail,
         message: newMessage,

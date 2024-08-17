@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, Image, Scro
 import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ipConfig } from '../config';
 
 
 const Messager = ({ route }) => {
@@ -20,7 +19,7 @@ const Messager = ({ route }) => {
   const loadMessages = (userEmail, caregiverEmail) => {
     // Fetch messages where the user is the receiver
     axios
-      .get(`http://${ipConfig}:8080/api/v1/allusers/get-messages/${userEmail}/${caregiverEmail}`)
+      .get(`https://sittrapi-production.up.railway.app/api/v1/allusers/get-messages/${userEmail}/${caregiverEmail}`)
       .then((response) => {
         const filteredMessages = response.data
           .filter((message) => message.receiver === userEmail)
@@ -52,13 +51,13 @@ const Messager = ({ route }) => {
   // Function to fetch caregivers
   const fetchCaregivers = () => {
     axios
-      .get(`http://${ipConfig}:8080/api/v1/users/bookings/recent-caregivers/${userEmail}`)
+      .get(`https://sittrapi-production.up.railway.app/api/v1/users/bookings/recent-caregivers/${userEmail}`)
       .then(async (response) => {
         const caregiversWithRatings = await Promise.all(
           response.data.map(async (caregiver) => {
             try {
               const ratingResponse = await axios.get(
-                `http://${ipConfig}:8080/api/v1/caregivers/reviewstats/${caregiver.email}`
+                `https://sittrapi-production.up.railway.app/api/v1/caregivers/reviewstats/${caregiver.email}`
               );
               const { total_ratings, average_rating } = ratingResponse.data;
 
@@ -89,7 +88,7 @@ const Messager = ({ route }) => {
   const onSend = () => {
     // Send the new message to your API
     axios
-      .post(`http://${ipConfig}:8080/api/v1/allusers/send-message`, {
+      .post(`https://sittrapi-production.up.railway.app/api/v1/allusers/send-message`, {
         senderEmail: userEmail || caregiverEmail,
         receiverEmail: selectedCaregiver.email || userEmail,
         message: newMessage, // Use the newMessage state variable
@@ -148,7 +147,7 @@ const Messager = ({ route }) => {
               <Image
                 style={styles.caregiverImage}
                 source={{
-                  uri: `http://${ipConfig}:8080/api/v1/allusers/images/${caregiver.profile_picture_url}`,
+                  uri: `https://sittrapi-production.up.railway.app/api/v1/allusers/images/${caregiver.profile_picture_url}`,
                 }}
                 onError={() => {
                   // If the image fails to load, display the placeholder image

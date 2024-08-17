@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity, Platform, Pressable, SafeAreaView, FlatList, ScrollView} from 'react-native';
 import axios from 'axios';
-import { ipConfig } from '../config';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DocumentPicker from 'react-native-document-picker';
@@ -204,7 +203,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
     });
   
     try {
-      const response = await axios.post(`http://${ipConfig}:8080/api/v1/allusers/upload`, formData, {
+      const response = await axios.post(`https://sittrapi-production.up.railway.app/api/v1/allusers/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -300,7 +299,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
       };
 
  
-       const response = await axios.post(`http://${ipConfig}:8080/api/v1/caregivers/register`, caregiverData, {
+       const response = await axios.post(`https://sittrapi-production.up.railway.app/api/v1/caregivers/register`, caregiverData, {
 
        headers: {
         'Content-Type': 'application/json',

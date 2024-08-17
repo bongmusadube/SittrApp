@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Modal, TextInput } from 'react-native';
 import axios from 'axios';
-import { ipConfig } from '../config';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
@@ -27,7 +26,7 @@ const BookingHistory = () => {
   useEffect(() => {
 
     // Fetch bookings for the specific user
-    axios.get(`http://${ipConfig}:8080/api/v1/bookings/user/${userEmail}`)
+    axios.get(`https://sittrapi-production.up.railway.app/api/v1/bookings/user/${userEmail}`)
       .then(response => {
         setBookings(response.data);
       })
@@ -57,7 +56,7 @@ const BookingHistory = () => {
     // Assuming rating and comment are already set
     if (rating && comment) {
       // Send the rating and comment to the server
-      axios.patch(`http://${ipConfig}:8080/api/v1/bookings/review/${selectedBookingId}`, {
+      axios.patch(`https://sittrapi-production.up.railway.app/api/v1/bookings/review/${selectedBookingId}`, {
         caregiver_rating: rating,
         review_comment: comment
       })

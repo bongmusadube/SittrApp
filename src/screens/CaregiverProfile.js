@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Calendar } from 'react-native-calendars';
 import { Rating } from 'react-native-stock-star-rating';
-import { ipConfig } from '../config';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import CheckBox from '@react-native-community/checkbox';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -14,8 +13,8 @@ import { merge } from 'lodash';
 import { format } from 'date-fns';
 
 
-const caregiverUrl = `http://${ipConfig}:8080/api/v1/caregivers`;
-const imagesUrl = `http://${ipConfig}:8080/api/v1/allusers/images/`;
+const caregiverUrl = `https://sittrapi-production.up.railway.app/api/v1/caregivers`;
+const imagesUrl = `https://sittrapi-production.up.railway.app/api/v1/allusers/images/`;
 const CaregiverProfile = ({ route }) => {
   const { userEmail, caregiverEmail, caregiverProfileUrl } = route.params;
   const [caregiverInfo, setCaregiverInfo] = useState(null);
@@ -60,7 +59,7 @@ const CaregiverProfile = ({ route }) => {
 
     useEffect(() => {
       // Fetch the caregiver's data based on the caregiverEmail
-      axios.get(`http://${ipConfig}:8080/api/v1/caregivers/${caregiverEmail}`)
+      axios.get(`https://sittrapi-production.up.railway.app/api/v1/caregivers/${caregiverEmail}`)
           .then(response => {
               setCaregiverInfo(response.data);
               setIsLoading(false);
@@ -71,7 +70,7 @@ const CaregiverProfile = ({ route }) => {
           });
   
       // Fetch the review statistics for the caregiver
-      axios.get(`http://${ipConfig}:8080/api/v1/caregivers/reviewstats/${caregiverEmail}`)
+      axios.get(`https://sittrapi-production.up.railway.app/api/v1/caregivers/reviewstats/${caregiverEmail}`)
           .then(response => {
               const { total_ratings, average_rating } = response.data;
               setCaregiverInfo(prevCaregiverInfo => ({
@@ -84,7 +83,7 @@ const CaregiverProfile = ({ route }) => {
           .catch(error => {
               console.error('Error fetching caregiver review statistics:', error);
           });
-          axios.get(`http://${ipConfig}:8080/api/v1/caregivers/booked-dates/${caregiverEmail}`)
+          axios.get(`https://sittrapi-production.up.railway.app/api/v1/caregivers/booked-dates/${caregiverEmail}`)
           .then(response => {
             const { bookedDates } = response.data;
             setBookedDates(bookedDates);
@@ -351,7 +350,7 @@ const CaregiverProfile = ({ route }) => {
     };
 
     // Make a POST request to create a booking with the form data
-    axios.post(`http://${ipConfig}:8080/api/v1/bookings`, bookingData)
+    axios.post(`https://sittrapi-production.up.railway.app/api/v1/bookings`, bookingData)
       .then(response => {
         // Booking was successful
         Alert.alert('Booking Successful', `Booking created for ${caregiverInfo.fullname}`);

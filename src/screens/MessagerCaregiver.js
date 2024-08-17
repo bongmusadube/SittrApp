@@ -12,7 +12,6 @@ import {
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { ipConfig } from '../config';
 
 const MessagerCaregiver = ({ route }) => {
   const [messages, setMessages] = useState([]);
@@ -29,7 +28,7 @@ const MessagerCaregiver = ({ route }) => {
     // Fetch messages where the caregiver is the receiver
     axios
       .get(
-        `http://${ipConfig}:8080/api/v1/allusers/get-messages/${caregiverEmail}/${user_email}`
+        `https://sittrapi-production.up.railway.app/api/v1/allusers/get-messages/${caregiverEmail}/${user_email}`
       )
       .then((response) => {
         const filteredMessages = response.data
@@ -62,7 +61,7 @@ const MessagerCaregiver = ({ route }) => {
   const fetchRecentUsers = () => {
     axios
       .get(
-        `http://${ipConfig}:8080/api/v1/caregivers/recent-users/${caregiverEmail}`
+        `https://sittrapi-production.up.railway.app/api/v1/caregivers/recent-users/${caregiverEmail}`
       )
       .then(async (response) => {
         setRecentUsers(response.data);
@@ -81,7 +80,7 @@ const MessagerCaregiver = ({ route }) => {
   const onSend = () => {
     // Send the new message to your API
     axios
-      .post(`http://${ipConfig}:8080/api/v1/allusers/send-message`, {
+      .post(`https://sittrapi-production.up.railway.app/api/v1/allusers/send-message`, {
         senderEmail: caregiverEmail,
         receiverEmail: selectedUser.email,
         message: newMessage,
@@ -140,7 +139,7 @@ const MessagerCaregiver = ({ route }) => {
                 <Image
                 style={styles.imageStyle}
                 source={{
-                  uri: `http://${ipConfig}:8080/api/v1/allusers/images/placeholder_img.png`,
+                  uri: `https://sittrapi-production.up.railway.app/api/v1/allusers/images/placeholder_img.png`,
                 }}
                 onError={() => {
                   // If the image fails to load, display the placeholder image

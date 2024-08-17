@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, ScrollView, StyleSheet} from 'react-native';
 import { Rating } from 'react-native-stock-star-rating'; // Assuming you have a Rating component
 import axios from 'axios';
-import { ipConfig } from '../config'; 
 
-const caregiverUrl = `http://${ipConfig}:8080/api/v1/caregivers`;
-const imagesUrl = `http://${ipConfig}:8080/api/v1/allusers/images/`;
+const caregiverUrl = `https://sittrapi-production.up.railway.app/api/v1/caregivers`;
+const imagesUrl = `https://sittrapi-production.up.railway.app/api/v1/allusers/images/`;
 
 const ProfileScreenCaregiver = ({ route }) => {
   const [caregiver, setCaregiver] = useState(null);

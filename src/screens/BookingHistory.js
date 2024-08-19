@@ -126,7 +126,9 @@ const BookingHistory = () => {
                 value={comment}
                 onChangeText={setComment}
                 multiline={true}
-                style={styles.commentInput}
+                style={{color: 'blue'}}
+                placeholderTextColor="#999"
+
               />
               <TouchableOpacity
                style={styles.buttonStyle}
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 20,
     textAlign: 'center',
+    color: 'grey'
   },
   leftTitle: {
     fontSize: 24,
@@ -186,11 +189,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 5,
     textAlign: 'center',
+    color: 'grey'
   },
   noBookingsText: {
     fontSize: 16,
     marginTop: 20,
     textAlign: 'center',
+    color: 'grey'
   },
   modalContainer: {
     flex: 1,
@@ -257,6 +262,7 @@ flexDirection: 'column',
     fontWeight: 'bold',
     marginBottom: 5,
     textAlign: 'left',
+    color: 'grey'
   },
   dateStyle: {
     backgroundColor: '#E57C23',

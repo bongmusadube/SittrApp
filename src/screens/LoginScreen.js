@@ -47,10 +47,11 @@ const LoginScreen = ({ navigation }) => {
 
       <View style={styles.wrapper}>
         <TextInput
-          style={styles.input}
+          style={[styles.input,  {color: 'black'}]}
           value={email}
           placeholder="Enter email"
           onChangeText={text => setEmail(text)}
+          placeholderTextColor= "#999"
         />
 
         <TextInput
@@ -58,6 +59,7 @@ const LoginScreen = ({ navigation }) => {
           value={password}
           placeholder="Enter password"
           onChangeText={text => setPassword(text)}
+           placeholderTextColor= "#999"
           secureTextEntry
         />
 
@@ -71,7 +73,7 @@ const LoginScreen = ({ navigation }) => {
       }}>Login</Text></TouchableOpacity>
 
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
-          <Text>Don't have an account? </Text>
+          <Text style={{ color: 'black'}}>Don't have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('TypeOfUserScreen')}>
             <Text style={styles.link}>Register</Text>
           </TouchableOpacity>
@@ -98,6 +100,8 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderRadius: 20,
     paddingHorizontal: 14,
+    backgroundColor: 'white',
+    color: 'black'
   },
   link: {
     color: 'blue',

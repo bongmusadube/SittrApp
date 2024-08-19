@@ -546,7 +546,7 @@ const CaregiverProfile = ({ route }) => {
       <Text style={styles.closeButtonText}> <Icon name="arrow-left" size={25} color="black"/></Text>
     </Pressable>
             <Text style={styles.modalTitle}>Booking Details</Text>
-            <Text style={{ textAlign: 'center', marginVertical: 10, }}> 
+            <Text style={{ textAlign: 'center', marginVertical: 10, color: 'black' }}> 
         Please choose a time between 06:00 and 22:00.
       </Text>
             <View style={styles.timePickerContainer}>
@@ -597,6 +597,7 @@ const CaregiverProfile = ({ route }) => {
           maximumDate={maxTime}
           minuteInterval={15}
           onChange={handleEndTimeChange}
+         placeholderTextColor="#999"
         />
       )}
             </View>
@@ -605,6 +606,7 @@ const CaregiverProfile = ({ route }) => {
   placeholder="Selected Dates"
   value={selectedDatesText}
   editable={false}
+  placeholderTextColor="#999"
 />
             <TouchableOpacity
   style={styles.datePickerButton}
@@ -662,6 +664,7 @@ const CaregiverProfile = ({ route }) => {
               value={numOfKids}
               onChangeText={text => setNumOfKids(text)}
               keyboardType="numeric"
+               placeholderTextColor="#999"
             />
             <View style={styles.checkboxContainer}>
            
@@ -671,6 +674,7 @@ const CaregiverProfile = ({ route }) => {
                 value={hasSpecialNeeds}
                 onValueChange={setHasSpecialNeeds}
                 tintColors={{ true: '#E57C23', false: 'gray' }}
+                 placeholderTextColor="#999"
              
               />
              
@@ -682,13 +686,15 @@ const CaregiverProfile = ({ route }) => {
                 placeholder="Comments for Special Needs"
                 value={comment}
                 onChangeText={text => setComment(text)}
+                 placeholderTextColor="#999"
               />
             )}
             <View style={styles.checkboxContainer}>
               <CheckBox
                 value={needsTransport}
                 onValueChange={setNeedsTransport}
-                tintColors={{ true: '#E57C23', false: 'gray' }}
+                tintColors={{ true: '#E57C23', false: 'gray', color: 'black' }}
+                 placeholderTextColor="#999"
              
               />
               <Text style={styles.checkboxLabel}>Transport Needed</Text>
@@ -696,15 +702,17 @@ const CaregiverProfile = ({ route }) => {
            
             <View>
   <TextInput
+    style={{color: "black"}}
     placeholder="Home Address"
     value={userAddress}
     onChangeText={(text) => setUserAddress(text)}
+    placeholderTextColor="#999"
   />
   <TouchableOpacity
     style={styles.googlePlacesContainer}
     onPress={getUserLocation}
   >
-    <Text>Use Current Location</Text>
+    <Text style={{color: 'black'}}>Use Current Location</Text>
   </TouchableOpacity>
 </View>
             <View style={styles.buttonContainer}>
@@ -817,7 +825,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 10,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'black'
   },
   input: {
     borderWidth: 1,
@@ -826,14 +835,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 25,
     marginBottom: 10,
+    color: "black"
   },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    color: "black"
   },
   checkboxLabel: {
     marginLeft: 10,
+    color: 'black'
   },
   submitButton: {
     alignItems: 'center',
@@ -879,6 +891,7 @@ const styles = StyleSheet.create({
   timePickerLabel: {
     fontSize: 16,
     marginRight: 10,
+    color: "black"
   },
   timePickerInput: {
     borderWidth: 1,
@@ -888,9 +901,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     padding: 20,
     flex: 1,
+    
   },
   timePickerText: {
     fontSize: 16,
+    color: "black"
   },
   label: {
     fontSize: 16,
@@ -981,6 +996,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10, // Adjust the spacing between the checkbox and label
+    color: "black"
   },
 
   calendar: {

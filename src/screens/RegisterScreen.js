@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { color } from '@rneui/base';
 
 const RegisterScreen = ({ navigation }) => {
   const [fullname, setFullname] = useState('');
@@ -174,6 +175,7 @@ const RegisterScreen = ({ navigation }) => {
             <TextInput
               style={[styles.input, !isEmailValid && styles.invalidInput]}
               placeholder="Email"
+              placeholderTextColor="#999"
               value={email}
               onChangeText={(text) => {
                 setEmail(text);
@@ -184,12 +186,13 @@ const RegisterScreen = ({ navigation }) => {
             <TextInput
               style={styles.input}
               placeholder="Password"
+              placeholderTextColor="#999"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
             />
             <View>
-              <Text>Date Of Birth</Text>
+              <Text style={{color: 'grey'}}>Date Of Birth</Text>
               {showDatePicker && (
                 <DateTimePicker
                   mode="date"
@@ -203,8 +206,8 @@ const RegisterScreen = ({ navigation }) => {
                   <TextInput
                     style={styles.input}
                     placeholder="Sat Aug 21 1996"
+                    placeholderTextColor="#999"
                     value={dob}
-                    placeholderTextColor="grey"
                     editable={false}
                   />
                 </Pressable>
@@ -214,6 +217,7 @@ const RegisterScreen = ({ navigation }) => {
               <DropDownPicker
                 items={genderOptions}
                 placeholder="Select Gender"
+                placeholderTextColor="#999"
                 defaultValue={gender}
                 open={genderOpen}
                 setOpen={setGenderOpen}
@@ -239,6 +243,7 @@ const RegisterScreen = ({ navigation }) => {
             <TextInput
               style={styles.input}
               placeholder="Contact Number"
+              placeholderTextColor="#999"
               value={contactno}
               onChangeText={setContactNo}
             />
@@ -246,6 +251,7 @@ const RegisterScreen = ({ navigation }) => {
               <DropDownPicker
                 items={officialLanguagesInSA}
                 placeholder="Select Language"
+                placeholderTextColor="#999"
                 defaultValue={language}
                 open={languageOpen}
                 setOpen={setLanguageOpen}
@@ -263,6 +269,7 @@ const RegisterScreen = ({ navigation }) => {
             <TextInput
               style={styles.input}
               placeholder="Location"
+              placeholderTextColor="#999"
               value={location}
               onChangeText={setLocation}
             />
@@ -270,6 +277,7 @@ const RegisterScreen = ({ navigation }) => {
               <DropDownPicker
                 items={raceOptions}
                 placeholder="Select Race"
+                placeholderTextColor="#999"
                 defaultValue={race}
                 open={raceOpen}
                 setOpen={setRaceOpen}
@@ -318,6 +326,7 @@ const styles = StyleSheet.create({
     borderColor: '#bbb',
     borderRadius: 5,
     paddingHorizontal: 14,
+    color: 'black'
   },
   invalidInput: {
     borderColor: 'red',
@@ -329,6 +338,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'grey'
   },
   dropDownContainer: {
     height: 40,

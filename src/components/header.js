@@ -26,7 +26,8 @@ const Header = (props) => {
             
             {
                 fontWeight: 'bold',
-                fontSize: 20
+                fontSize: 20,
+                color: 'grey'
                         
              }}>{props.title}</Text>
         </View>
@@ -44,7 +45,8 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: 'white',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        
 
      }
 

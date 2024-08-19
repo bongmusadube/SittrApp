@@ -237,6 +237,7 @@ const styles = StyleSheet.create({
   },
   caregiverName: {
     fontSize: 16,
+    color: 'black'
   },
   modalContainer: {
     flex: 1,

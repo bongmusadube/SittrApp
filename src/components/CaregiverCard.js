@@ -87,7 +87,7 @@ const CaregiverCard = ({userEmail}) => {
                     </View>
 
                     <View>
-                        <Text style={{ fontSize: 25, fontWeight: "bold" }}>
+                        <Text style={{ fontSize: 25, fontWeight: "bold", color: "rgba(0, 0, 0, 0.5)" }}>
                         R{caregiver.hourly_rate}<Text style={{ fontSize: 20, color: "rgba(0, 0, 0, 0.5)" }}>/h</Text>
                         </Text>
                     </View>
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
     cardStyle: {
         flexDirection: 'column',
         alignItems: 'center',
-       
         height: 340,
         width: 250,
         borderRadius: 25,
@@ -154,7 +153,8 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize: 22,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'grey'
         
     }
 });

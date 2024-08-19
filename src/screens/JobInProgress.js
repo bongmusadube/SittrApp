@@ -200,12 +200,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
+    color: 'grey'
   },
   leftHeader: {
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 5,
     textAlign: 'left',
+    color: 'grey'
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -278,17 +280,19 @@ const styles = StyleSheet.create({
   {
     fontSize: 20,
     flexWrap: 'wrap',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'grey'
   },
   priceText: {
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: 'grey'
   },
   noBookingsText: {
     textAlign: 'center',
     fontSize: 16,
-    color: 'gray',
+    color: 'grey',
   },
 
 
@@ -300,6 +304,7 @@ const styles = StyleSheet.create({
     noJobText: {
       fontWeight: 'bold',
       fontSize: 20,
+      color: 'black'
     },
     bookingContainer: {
         flex: 1,
@@ -313,6 +318,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 15,
+        color: 'grey'
       },
       infoContainer: {
         width: '100%',
@@ -322,6 +328,7 @@ const styles = StyleSheet.create({
       },
       infoText: {
         marginBottom: 10,
+        color: 'grey'
       },
       completeButton: {
         marginTop: 20,

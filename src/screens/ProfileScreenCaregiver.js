@@ -60,19 +60,19 @@ const ProfileScreenCaregiver = ({ route }) => {
       
       />
 
-          <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center', marginTop: 5 }}>
+          <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center', marginTop: 5, color: 'grey'}}>
             {caregiver.fullname}
           </Text>
          
           <View style={{ alignItems: 'center', marginTop: 5 }}>
       <Rating stars={reviewStats?.average_rating || 0} maxStars={5} size={24} />
-      <Text>({reviewStats?.total_ratings || 0} ratings)</Text>
+      <Text style={{color: 'grey'}}>({reviewStats?.total_ratings || 0} ratings)</Text>
     </View>
           {/* Display other profile information as needed */}
      </View>
       )}
 
-      <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 20, marginLeft: 10 }}>Recent Reviews</Text>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 20, marginLeft: 10, color: 'grey' }}>Recent Reviews</Text>
       {reviews.map((review, index) => (
         <View key={index} style={{ 
           
@@ -88,7 +88,7 @@ const ProfileScreenCaregiver = ({ route }) => {
             {'  '}
             By {review.user_email} on {review.created_at}
           </Text>
-          <Text>{review.review_comment}</Text>
+          <Text style={{color: 'grey'}}>{review.review_comment}</Text>
         </View>
       ))}
     </ScrollView>

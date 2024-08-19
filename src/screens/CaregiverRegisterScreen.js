@@ -343,6 +343,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
             <TextInput
               style={[styles.input, !isEmailValid && styles.invalidInput]}
               placeholder="Email"
+              placeholderTextColor="#999"
               value={email}
               onChangeText={(text) => {
                 setEmail(text);
@@ -353,6 +354,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
             <TextInput
               style={styles.input}
               placeholder="Password"
+              placeholderTextColor="#999"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -375,6 +377,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
                     value={dateOfBirth}
                     placeholderTextColor="grey"
                     editable={false}
+                    
                   />
                 </Pressable>
               )}
@@ -411,6 +414,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
               value={contactNumber}
               onChangeText={setContactNumber}
               keyboardType="phone-pad"
+              placeholderTextColor="#999"
             />
                             <View style={styles.dropDownContainer}>
               <DropDownPicker
@@ -435,6 +439,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
               placeholder="Location"
               value={location}
               onChangeText={setLocation}
+              placeholderTextColor="#999"
             />
             <TextInput
               style={styles.input}
@@ -442,6 +447,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
               value={hourlyRate}
               onChangeText={setHourlyRate}
               keyboardType="numeric"
+              placeholderTextColor="#999"
             />
             <TextInput
               style={styles.input}
@@ -449,6 +455,7 @@ const CaregiverRegisterScreen = ({ navigation }) => {
               value={yearsOfExperience}
               onChangeText={setYearsOfExperience}
               keyboardType="numeric"
+              placeholderTextColor="#999"
             />
             <Button title="Previous" style={styles.btnStyle} onPress={handlePreviousStep} />
             <Button title="Next" style={styles.btnStyle} onPress={handleNextStep} />
@@ -477,12 +484,12 @@ const CaregiverRegisterScreen = ({ navigation }) => {
                 </View>
               </View>
               <View style={styles.timePickerContainer}>
-              <Text style={styles.timePickerLabel}>Start Time:</Text>
+              <Text style={styles.label}>Start Time:</Text>
               <TouchableOpacity
                 onPress={() => setStartTimePickerVisible(true)}
                 style={styles.timePickerInput}
               >
-                <Text style={styles.timePickerText}>
+                <Text style={styles.label}>
                   {startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </Text>
                 </TouchableOpacity>
@@ -500,12 +507,12 @@ const CaregiverRegisterScreen = ({ navigation }) => {
       )}
             </View>
             <View style={styles.timePickerContainer}>
-              <Text style={styles.timePickerLabel}>End Time:</Text>
+              <Text style={styles.label}>End Time:</Text>
               <TouchableOpacity
                 onPress={() => setEndTimePickerVisible(true)}
                 style={styles.timePickerInput}
               >
-                <Text style={styles.timePickerText}>
+                <Text style={styles.label}>
                   {endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </Text>
                 </TouchableOpacity>
@@ -536,23 +543,24 @@ const CaregiverRegisterScreen = ({ navigation }) => {
 <TextInput
   style={styles.input}
   placeholder="Enter ID Number"
+  placeholderTextColor="#999"
   value={idNumber}
   onChangeText={setIdNumber}
   keyboardType="numeric"
 />
 
 <View style={styles.uploadContainer}>
-  <Text>Upload ID:</Text>
+  <Text style={styles.label}>Upload ID:</Text>
   <Button title={`Select ID Image (${idDocumentName || 'No file selected'})`} onPress={() => handleImagePicker('idDocument')} />
 </View>
 
 <View style={styles.uploadContainer}>
-  <Text>Upload Police Clearance Image:</Text>
+  <Text style={styles.label}>Upload Police Clearance Image:</Text>
   <Button title={`Select Police Clearance Image (${policeClearanceName || 'No file selected'})`} onPress={() => handleImagePicker('policeClearance')} />
 </View>
 
 <View style={styles.uploadContainer}>
-  <Text>Upload Profile Picture:</Text>
+  <Text style={styles.label}>Upload Profile Picture:</Text>
   <Button title={`Select Profile Picture (${profilePictureName || 'No file selected'})`} onPress={() => handleImagePicker('profilePicture')} />
 </View>
 
@@ -593,6 +601,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     alignSelf: 'center',
+    color: 'grey'
   },
   stepContainer: {
     flex: 1,
@@ -606,6 +615,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+    color: 'grey'
   },
   dropDownContainer: {
     height: 40,
@@ -635,6 +645,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
+  },
+  label:
+  {
+    color: 'grey'
   },
   dayButton: {
     width: 40,
@@ -675,6 +689,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  textStyle:
+  {
+    color: 'grey'
+  }
 });
 
 export default CaregiverRegisterScreen;

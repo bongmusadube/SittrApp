@@ -225,6 +225,7 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 16,
+    color: 'black'
   },
   modalContainer: {
     flex: 1,

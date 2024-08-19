@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    fontFamily: 'Helvetica Neue', // Use the same font as Apple.com
+    fontFamily: 'Helvetica Neue',
+    color: 'grey'
   },
   buttonContainer: {
     marginTop: 15,

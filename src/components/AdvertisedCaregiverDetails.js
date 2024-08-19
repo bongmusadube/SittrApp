@@ -98,7 +98,8 @@ const AdvertisedCaregiverDetails = ({ userEmail }) => {
             }}>
               <Text style={{
                 fontSize: 25,
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+                color: "rgba(0, 0, 0, 0.5)"
               }}>R{caregiver.hourly_rate}<Text style={
                 {
                   fontSize: 20,
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.2)',
+    color: 'black'
   },
   imgStyle: {
     height: 70,

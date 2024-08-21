@@ -482,19 +482,7 @@ const CaregiverProfile = ({ route }) => {
           
         }}>{caregiverInfo.years_of_experience} Years of Experence</Text>
       </View>
-      <View style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 3
-      }}>
-        <Icon name="baby" size={15} color="black" style={{
-          marginRight: 20,
-        }}/>
-        <Text 
-        style={{...styles.priceStyle
-          
-        }}>Can Care for Up to of 3 Kids</Text>
-      </View>
+      
       <View style={{
         flexDirection: 'row',
         alignItems: 'center',

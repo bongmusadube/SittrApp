@@ -12,15 +12,7 @@ const CaregiverCard = ({userEmail}) => {
     const [caregivers, setCaregivers] = useState([]);
     const navigation = useNavigation();
 
-    const navigateToProfile = () => {
-        navigation.navigate('CaregiverProfile', {
-          userEmail: caregiver.userEmail, // Replace with the appropriate prop from your data
-          caregiverEmail: caregiver.email,
-          caregiverProfileUrl: caregiver.profile_picture_url,
-        });
-      };
-
-      useEffect(() => {
+    useEffect(() => {
         // Fetch the caregivers data from the API
         axios.get(caregiverUrl)
             .then(async response => {
@@ -51,24 +43,34 @@ const CaregiverCard = ({userEmail}) => {
             .catch(error => {
                 console.error("Error fetching caregivers:", error);
             });
-    }, []);// The empty array [] ensures that the effect runs only once when the component mounts
+    }, []);
 
     return (
         <ScrollView horizontal={true} style={{backgroundColor:'white'}}>
             {caregivers.map((caregiver, index) => (
-                <View style={styles.cardStyle} key={index}>
+                <TouchableOpacity
+                    key={index}
+                    onPress={() => {
+                        navigation.navigate('CaregiverProfile', {
+                            userEmail: userEmail,
+                            caregiverEmail: caregiver.email,
+                            caregiverProfileUrl: caregiver.profile_picture_url,
+                        });
+                    }}
+                    style={styles.cardStyle}
+                >
                     <View style={styles.imageContainer}>
                         <Image style={styles.imgStyle} source={{ uri: caregiverImagesUrl + caregiver.profile_picture_url }} />
                     </View>
 
                     <View style={styles.infoContainer}>
-                        <Text style={styles.nameStyle}>{caregiver.fullname}</Text>
+                        <Text style={styles.nameStyle} numberOfLines={2}>{caregiver.fullname}</Text>
                     
                         <View style={styles.ratingContainer}>
                             <Rating
                                 stars={caregiver.average_rating || 0}
                                 maxStars={5}
-                                size={16}
+                                size={14}
                                 containerStyle={{ marginRight: 5 }}
                             />
                             <Text style={styles.ratingText}>
@@ -80,20 +82,7 @@ const CaregiverCard = ({userEmail}) => {
                     <Text style={styles.rateStyle}>
                         R{caregiver.hourly_rate}<Text style={styles.perHourStyle}>/h</Text>
                     </Text>
-
-                    <TouchableOpacity
-                        onPress={() => {
-                            navigation.navigate('CaregiverProfile', {
-                                userEmail: userEmail,
-                                caregiverEmail: caregiver.email,
-                                caregiverProfileUrl: caregiver.profile_picture_url,
-                            });
-                        }}
-                        style={styles.arrowContainer}
-                    >
-                        <Icon name="arrow-right" size={24} color="black" />
-                    </TouchableOpacity>
-                </View>
+                </TouchableOpacity>
             ))}
         </ScrollView>
     );
@@ -103,34 +92,34 @@ const styles = StyleSheet.create({
     cardStyle: {
         flexDirection: 'column',
         alignItems: 'center',
-        height: 280,
-        width: 200,
-        borderRadius: 20,
+        height: 240,
+        width: 160,
+        borderRadius: 16,
         backgroundColor: 'rgba(0, 0, 0, 0.02)',
-        marginTop: 10,
-        marginRight: 20,
-        marginBottom: 10,
+        marginTop: 8,
+        marginRight: 16,
+        marginBottom: 8,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.2)',
-        padding: 10,
+        padding: 8,
     },
     imageContainer: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     imgStyle: {
-        height: 150,
-        width: 180,
+        height: 120,
+        width: 140,
         alignSelf: 'center',
-        borderRadius: 20,
+        borderRadius: 16,
     },
     infoContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 5,
+        marginTop: 4,
     },
     nameStyle: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         color: 'grey',
         textAlign: 'center',
@@ -138,23 +127,20 @@ const styles = StyleSheet.create({
     ratingContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 5,
+        marginTop: 4,
     },
     ratingText: {
-        fontSize: 14,
+        fontSize: 12,
     },
     rateStyle: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
         color: "rgba(0, 0, 0, 0.5)",
-        marginTop: 5,
+        marginTop: 4,
     },
     perHourStyle: {
-        fontSize: 16,
+        fontSize: 14,
         color: "rgba(0, 0, 0, 0.5)",
-    },
-    arrowContainer: {
-        marginTop: 5,
     },
 });
 

@@ -57,40 +57,29 @@ const CaregiverCard = ({userEmail}) => {
         <ScrollView horizontal={true} style={{backgroundColor:'white'}}>
             {caregivers.map((caregiver, index) => (
                 <View style={styles.cardStyle} key={index}>
-                    <View style= {{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}>
+                    <View style={styles.imageContainer}>
                         <Image style={styles.imgStyle} source={{ uri: caregiverImagesUrl + caregiver.profile_picture_url }} />
                     </View>
 
-                    <View style={{ flexWrap: 'wrap', 
-                                textAlign: 'center',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                         }}>
-                        <Text style={{...styles.textStyle,flexWrap: 'wrap', 
-                                textAlign: 'center'}}>{caregiver.fullname}</Text>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.nameStyle}>{caregiver.fullname}</Text>
                     
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 5 }}>
-                        <Rating
-                            stars={caregiver.average_rating || 0} // Use the average rating, default to 0 if null
-                            maxStars={5}
-                            size={20}
-                            containerStyle={{ marginRight: 5 }}
-                        />
-                        <Text style={{ fontSize: 16 }}>
-                            ({caregiver.total_ratings || 0})
-                        </Text>
-                    </View>
-                      
+                        <View style={styles.ratingContainer}>
+                            <Rating
+                                stars={caregiver.average_rating || 0}
+                                maxStars={5}
+                                size={16}
+                                containerStyle={{ marginRight: 5 }}
+                            />
+                            <Text style={styles.ratingText}>
+                                ({caregiver.total_ratings || 0})
+                            </Text>
+                        </View>
                     </View>
 
-                    <View>
-                        <Text style={{ fontSize: 25, fontWeight: "bold", color: "rgba(0, 0, 0, 0.5)" }}>
-                        R{caregiver.hourly_rate}<Text style={{ fontSize: 20, color: "rgba(0, 0, 0, 0.5)" }}>/h</Text>
-                        </Text>
-                    </View>
+                    <Text style={styles.rateStyle}>
+                        R{caregiver.hourly_rate}<Text style={styles.perHourStyle}>/h</Text>
+                    </Text>
 
                     <TouchableOpacity
                         onPress={() => {
@@ -100,28 +89,9 @@ const CaregiverCard = ({userEmail}) => {
                                 caregiverProfileUrl: caregiver.profile_picture_url,
                             });
                         }}
+                        style={styles.arrowContainer}
                     >
-                        <View>
-                        <View style={{}}>
-                        <TouchableOpacity  key={index}
-          onPress={ () =>{
-
-              navigation.navigate('CaregiverProfile', {
-                userEmail: userEmail,
-                caregiverEmail: caregiver.email,
-                caregiverProfileUrl: caregiver.profile_picture_url,
-              });
-
-          }
-          }>
-            <View style={{
-              marginLeft: 5
-            }}>
-              <Icon name="arrow-right" size={30} color="black" />
-            </View>
-          </TouchableOpacity>
-                        </View>
-                        </View>
+                        <Icon name="arrow-right" size={24} color="black" />
                     </TouchableOpacity>
                 </View>
             ))}
@@ -133,30 +103,59 @@ const styles = StyleSheet.create({
     cardStyle: {
         flexDirection: 'column',
         alignItems: 'center',
-        height: 340,
-        width: 250,
-        borderRadius: 25,
+        height: 280,
+        width: 200,
+        borderRadius: 20,
         backgroundColor: 'rgba(0, 0, 0, 0.02)',
         marginTop: 10,
-        marginRight: 30,
+        marginRight: 20,
         marginBottom: 10,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.2)',
+        padding: 10,
+    },
+    imageContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     imgStyle: {
-        height: 200,
-        width: 250,
+        height: 150,
+        width: 180,
         alignSelf: 'center',
-        borderRadius: 25,
-        
-        
+        borderRadius: 20,
     },
-    textStyle: {
-        fontSize: 22,
+    infoContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 5,
+    },
+    nameStyle: {
+        fontSize: 18,
         fontWeight: 'bold',
-        color: 'grey'
-        
-    }
+        color: 'grey',
+        textAlign: 'center',
+    },
+    ratingContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 5,
+    },
+    ratingText: {
+        fontSize: 14,
+    },
+    rateStyle: {
+        fontSize: 20,
+        fontWeight: "bold",
+        color: "rgba(0, 0, 0, 0.5)",
+        marginTop: 5,
+    },
+    perHourStyle: {
+        fontSize: 16,
+        color: "rgba(0, 0, 0, 0.5)",
+    },
+    arrowContainer: {
+        marginTop: 5,
+    },
 });
 
 export default CaregiverCard;

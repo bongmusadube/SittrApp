@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#393E46',
+    color: 'grey',
     flexWrap:"wrap"
   }
 });

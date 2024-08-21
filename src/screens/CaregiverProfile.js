@@ -532,201 +532,199 @@ const CaregiverProfile = ({ route }) => {
     </TouchableOpacity>
   </View>
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isBookingModalVisible}
-        onRequestClose={() => {
-          setBookingModalVisible(false);
-        }}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-          <Pressable style={styles.closeButton} onPress={() => setBookingModalVisible(false)}>
-      <Text style={styles.closeButtonText}> <Icon name="arrow-left" size={25} color="black"/></Text>
-    </Pressable>
-            <Text style={styles.modalTitle}>Booking Details</Text>
-            <Text style={{ textAlign: 'center', marginVertical: 10, color: 'black' }}> 
+  <Modal
+  animationType="slide"
+  transparent={true}
+  visible={isBookingModalVisible}
+  onRequestClose={() => {
+    setBookingModalVisible(false);
+  }}
+>
+  <View style={styles.modalContainer}>
+    <View style={styles.modalContent}>
+      <Pressable style={styles.closeButton} onPress={() => setBookingModalVisible(false)}>
+        <Icon name="times" size={24} color="#333" />
+      </Pressable>
+
+      <Text style={styles.modalTitle}>Booking Details</Text>
+
+      <Text style={styles.modalSubtitle}>
         Please choose a time between 06:00 and 22:00.
       </Text>
-            <View style={styles.timePickerContainer}>
-              <Text style={styles.timePickerLabel}>Start Time:</Text>
-              <TouchableOpacity
-                onPress={() => setStartTimePickerVisible(true)}
-                style={styles.timePickerInput}
-              >
-                <Text style={styles.timePickerText}>
-                  {startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </Text>
-                </TouchableOpacity>
-      {isStartTimePickerVisible && (
-        <DateTimePicker
-          value={startTime}
-          mode="time"
-          is24Hour={true}
-          display="spinner"
-          minimumDate={minTime}
-          maximumDate={maxTime}
-          minuteInterval={15}
-          onChange={handleStartTimeChange}
-        />
-      )}
-            </View>
 
-            <View style={styles.timePickerContainer}>
-              <Text style={{...styles.timePickerLabel,
-                           
-              }}>End Time:</Text>
-              <TouchableOpacity
-                onPress={() => setEndTimePickerVisible(true)}
-                style={{...styles.timePickerInput,
-                        marginLeft: 6,
-                }}
-              >
-                <Text style={styles.timePickerText}>
-                  {endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </Text>
-                </TouchableOpacity>
-      {isEndTimePickerVisible && (
-        <DateTimePicker
-          value={endTime}
-          mode="time"
-          is24Hour={true}
-          display="spinner"
-          minimumDate={startTime}
-          maximumDate={maxTime}
-          minuteInterval={15}
-          onChange={handleEndTimeChange}
-         placeholderTextColor="#999"
-        />
-      )}
-            </View>
-            <TextInput
-  style={styles.input}
-  placeholder="Selected Dates"
-  value={selectedDatesText}
-  editable={false}
-  placeholderTextColor="#999"
-/>
-            <TouchableOpacity
-  style={styles.datePickerButton}
-  onPress={() => setBookingDateCalendarVisible(true)}
->
-  <Text style={styles.datePickerButtonText}>Select Booking Date</Text>
-</TouchableOpacity>
+      <View style={styles.timePickerContainer}>
+        <Text style={styles.timePickerLabel}>Start Time:</Text>
+        <TouchableOpacity
+          onPress={() => setStartTimePickerVisible(true)}
+          style={styles.timePickerInput}
+        >
+          <Text style={styles.timePickerText}>
+            {startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </Text>
+          <Icon name="clock" size={18} color="#666" />
+        </TouchableOpacity>
+        {isStartTimePickerVisible && (
+          <DateTimePicker
+            value={startTime}
+            mode="time"
+            is24Hour={true}
+            display="spinner"
+            minimumDate={minTime}
+            maximumDate={maxTime}
+            minuteInterval={15}
+            onChange={handleStartTimeChange}
+          />
+        )}
+      </View>
 
-  
-    {isBookingDateCalendarVisible && (
-       <Modal
-       animationType="slide"
-       transparent={true}
-       visible={isBookingDateCalendarVisible}
-       onRequestClose={() => {
-         setBookingDateCalendarVisible(false);
-       }}
-     >
-        <View style={styles.dateCalendarContainer}>
-        <Calendar
-         style={styles.calendar}
-        current={selectedBookingDate.toISOString()}
-        minDate={minSelectableDate.toISOString()}
-        onDayPress={handleDateSelection}
-        hideExtraDays
-        markedDates={getMarkedDates()}
+      <View style={styles.timePickerContainer}>
+        <Text style={styles.timePickerLabel}>End Time:</Text>
+        <TouchableOpacity
+          onPress={() => setEndTimePickerVisible(true)}
+          style={styles.timePickerInput}
+        >
+          <Text style={styles.timePickerText}>
+            {endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </Text>
+          <Icon name="clock" size={18} color="#666" />
+        </TouchableOpacity>
+        {isEndTimePickerVisible && (
+          <DateTimePicker
+            value={endTime}
+            mode="time"
+            is24Hour={true}
+            display="spinner"
+            minimumDate={startTime}
+            maximumDate={maxTime}
+            minuteInterval={15}
+            onChange={handleEndTimeChange}
+          />
+        )}
+      </View>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Selected Dates"
+        value={selectedDatesText}
+        editable={false}
+        placeholderTextColor="#999"
       />
 
-{isAlertVisible && (
-  Alert.alert(
-    `${caregiverInfo.fullname} is booked on this date`,
-    'Please choose a different date.',
-    [
-      {
-        text: 'OK',
-        onPress: () => setAlertVisible(false),
-      },
-    ]
-  )
-)}
-
-<TouchableOpacity
-        style={styles.closeCalendarButton}
-        onPress={() => setBookingDateCalendarVisible(false)}
+      <TouchableOpacity
+        style={styles.datePickerButton}
+        onPress={() => setBookingDateCalendarVisible(true)}
       >
-        <Text style={styles.closeCalendarButtonText}>Close Calendar</Text>
+        <Icon name="calendar" size={18} color="#fff" style={styles.buttonIcon} />
+        <Text style={styles.datePickerButtonText}>Select Booking Date</Text>
       </TouchableOpacity>
-        </View>
-      </Modal>
-    )}
-            
-            <TextInput
-              style={styles.input}
-              placeholder="Number of Kids"
-              value={numOfKids}
-              onChangeText={text => setNumOfKids(text)}
-              keyboardType="numeric"
-               placeholderTextColor="#999"
-            />
-            <View style={styles.checkboxContainer}>
-           
-              <CheckBox
-              style={styles.roundCheckbox}
 
-                value={hasSpecialNeeds}
-                onValueChange={setHasSpecialNeeds}
-                tintColors={{ true: '#E57C23', false: 'gray' }}
-                 placeholderTextColor="#999"
-             
-              />
-             
-              <Text style={styles.checkboxLabel}>Special Needs Kids</Text>
-            </View>
-            {hasSpecialNeeds && (
-              <TextInput
-                style={styles.input}
-                placeholder="Comments for Special Needs"
-                value={comment}
-                onChangeText={text => setComment(text)}
-                 placeholderTextColor="#999"
-              />
+      {isBookingDateCalendarVisible && (
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isBookingDateCalendarVisible}
+          onRequestClose={() => {
+            setBookingDateCalendarVisible(false);
+          }}
+        >
+          <View style={styles.dateCalendarContainer}>
+            <Calendar
+              style={styles.calendar}
+              current={selectedBookingDate.toISOString()}
+              minDate={minSelectableDate.toISOString()}
+              onDayPress={handleDateSelection}
+              hideExtraDays
+              markedDates={getMarkedDates()}
+            />
+
+            {isAlertVisible && (
+              Alert.alert(
+                `${caregiverInfo.fullname} is booked on this date`,
+                'Please choose a different date.',
+                [
+                  {
+                    text: 'OK',
+                    onPress: () => setAlertVisible(false),
+                  },
+                ]
+              )
             )}
-            <View style={styles.checkboxContainer}>
-              <CheckBox
-                value={needsTransport}
-                onValueChange={setNeedsTransport}
-                tintColors={{ true: '#E57C23', false: 'gray', color: 'black' }}
-                 placeholderTextColor="#999"
-             
-              />
-              <Text style={styles.checkboxLabel}>Transport Needed</Text>
-            </View>
-           
-            <View>
-  <TextInput
-    style={{color: "black"}}
-    placeholder="Home Address"
-    value={userAddress}
-    onChangeText={(text) => setUserAddress(text)}
-    placeholderTextColor="#999"
-  />
-  <TouchableOpacity
-    style={styles.googlePlacesContainer}
-    onPress={getUserLocation}
-  >
-    <Text style={{color: 'black'}}>Use Current Location</Text>
-  </TouchableOpacity>
-</View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.submitButton}
-                onPress={handleFormSubmit}
-              >
-                <Text style={styles.submitButtonText}>Submit</Text>
-              </TouchableOpacity>
-            
-            </View>
+
+            <TouchableOpacity
+              style={styles.closeCalendarButton}
+              onPress={() => setBookingDateCalendarVisible(false)}
+            >
+              <Text style={styles.closeCalendarButtonText}>Close Calendar</Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      )}
+
+<TextInput
+        style={styles.input}
+        placeholder="Number of Kids"
+        value={numOfKids}
+        onChangeText={text => setNumOfKids(text)}
+        keyboardType="numeric"
+        placeholderTextColor="#999"
+      />
+
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          style={styles.checkbox}
+          value={hasSpecialNeeds}
+          onValueChange={setHasSpecialNeeds}
+          tintColors={{ true: '#E57C23', false: '#999' }}
+        />
+        <Text style={styles.checkboxLabel}>Special Needs Kids</Text>
+      </View>
+
+      {hasSpecialNeeds && (
+        <TextInput
+          style={styles.input}
+          placeholder="Comments for Special Needs"
+          value={comment}
+          onChangeText={text => setComment(text)}
+          placeholderTextColor="#999"
+        />
+      )}
+
+      <View style={styles.checkboxContainer}>
+        <CheckBox
+          style={styles.checkbox}
+          value={needsTransport}
+          onValueChange={setNeedsTransport}
+          tintColors={{ true: '#E57C23', false: '#999' }}
+        />
+        <Text style={styles.checkboxLabel}>Transport Needed</Text>
+      </View>
+
+      <View style={styles.addressContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Home Address"
+          value={userAddress}
+          onChangeText={(text) => setUserAddress(text)}
+          placeholderTextColor="#999"
+        />
+        <TouchableOpacity
+          style={styles.locationButton}
+          onPress={getUserLocation}
+        >
+          <Icon name="map-marker-alt" size={18} color="#E57C23" />
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        style={styles.submitButton}
+        onPress={handleFormSubmit}
+      >
+        <Text style={styles.submitButtonText}>Submit Booking</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
+      
       <Modal
         animationType="slide"
         transparent={true}
@@ -1037,6 +1035,127 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    maxHeight: '90%',
+  },
+  closeButton: {
+    alignSelf: 'flex-end',
+    padding: 10,
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+    color: '#333',
+  },
+  modalSubtitle: {
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#666',
+    fontSize: 14,
+  },
+  timePickerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  timePickerLabel: {
+    fontSize: 16,
+    marginRight: 10,
+    color: "#333",
+    width: 80,
+  },
+  timePickerInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    flex: 1,
+  },
+  timePickerText: {
+    fontSize: 16,
+    color: "#333"
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    color: "#333",
+    fontSize: 16,
+  },
+  datePickerButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#E57C23',
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 15,
+  },
+  buttonIcon: {
+    marginRight: 10,
+  },
+  datePickerButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#E57C23',
+    marginRight: 10,
+  },
+  checkboxLabel: {
+    fontSize: 16,
+    color: '#333',
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  locationButton: {
+    padding: 10,
+    marginLeft: 10,
+  },
+  submitButton: {
+    backgroundColor: '#E57C23',
+    borderRadius: 10,
+    padding: 15,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  submitButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
 });
 
 export default CaregiverProfile;
